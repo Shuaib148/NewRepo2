@@ -30,7 +30,6 @@ namespace NIC_PRACTICAL.Controllers
 			//List<StudentDetail> list=new List<StudentDetail>();
 			//list = _ctx.StudentDetails.ToList();
 			//return View(list);
-			int i = 0;
 			
 			List<StudentModel>  tblUsers = new List<StudentModel>();
 			//var ls = _repo1.GetAll();
