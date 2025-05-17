@@ -1,0 +1,101 @@
+﻿@model NIC_PRACTICAL.Models.StudentDetail
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<h4> EDIT PAGE !!</h4>
+
+
+<form method="post">
+	<div class="col-lg-12">
+		<div class="col-lg-6">
+			<div class="form-group">
+				
+				<input type="text" placeholder="Enter the roll number" asp-for="StudentRoll" id="rnumber" required />
+			</div>
+			<div>  
+		</div>
+
+		<div class="col-lg-6">
+			<div class="form-group">
+				<label>Student Name</label>
+				<input type="text" placeholder="Enter the name" asp-for="StudentName" required />
+			</div>
+		</div>
+
+		<div class="col-lg-6">
+			<div class="form-group">
+				<label>Marks</label>
+				<input type="text" placeholder="Enter total marks" asp-for="TotalMarks" id="marks" required />
+			</div>
+		</div>
+
+		<div class="col-lg-6">
+			<div class="form-group">
+				<label>Department Name</label>
+				<select asp-items="ViewBag.Dept" id="deptid" asp-for="DeptCode">
+					<option value="0">
+						-- Select --
+					</option>
+
+				</select>
+			</div>
+		</div>
+
+		<div class="col-lg-6">
+			<div class="form-group">
+				<label>Date of birth</label>
+				<input type="date" placeholder="Enter the Dept code" asp-for="Dob" id="dte" required />
+			</div>
+		</div>
+
+	</div>
+	
+	<div>
+		<input type="submit"  />
+	</div>
+
+</form>
+
+<script>
+	$(document).ready(function () {
+		$('#rnumber').on('keypress', function (event) {
+			if (event.which < 48 || event.which > 57) {
+				event.preventDefault();
+			}
+		}).on('input', function () {
+			if (this.value.length > 4) {
+				this.value = this.value.slice(0, 4);
+			}
+			this.value = this.value.replace(/[^0-9]/g, '');
+		});
+	});
+
+	$(document).ready(function () {
+		$('#marks').on('keypress', function (event) {
+			if (event.which < 48 || event.which > 57) {
+				event.preventDefault();
+			}
+		}).on('input', function () {
+			if (this.value.length > 8) {
+				this.value = this.value.slice(0, 8);
+			}
+			this.value = this.value.replace(/[^0-9]/g, '');
+		});
+	});
+
+	$(document).ready(function () {
+		var today = new Date();
+		var minDate = new Date(today.getFullYear() - 26, today.getMonth(), today.getDate());
+		var maxDate = new Date(today.getFullYear() - 17, today.getMonth(), today.getDate());
+
+		var formatDate = function (date) {
+			var day = ("0" + date.getDate()).slice(-2);
+			var month = ("0" + (date.getMonth() + 1)).slice(-2);
+			return date.getFullYear() + "-" + month + "-" + day;
+		};
+
+		$('#dte').attr('min', formatDate(minDate));
+		$('#dte').attr('max', formatDate(maxDate));
+	});
+
+
+</script>

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<NIC_PRACTICAL.Data.StudentModel>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+
+
+	<div id="tblst">
+	<table class="table table-bordered" id="studentsTable">
+			<thead>
+				<tr>
+					<td>
+						Student Roll :
+					</td>
+				<td>
+					Student Name :
+				</td>
+				<td>
+					Total Marks :
+				</td>
+				<td>
+					Department Name:
+				</td>
+				<td>
+					Dob:
+				</td>
+
+				</tr>
+			</thead>
+			<tbody>
+				
+				@foreach(var item in Model)
+				{
+				<tr>
+					<td>
+						@item.StudentRoll
+					</td>
+					<td>
+						@item.StudentName
+					</td>
+					<td>
+						@item.TotalMarks
+					</td>
+					<td>
+						@item.DeptName
+					</td>
+					<td>
+						@item.Dob
+					</td>
+
+				<td>
+						<a asp-controller="Home" asp-action="Edit" asp-route-Id="@item.Id">Edit</a>
+				</td>
+				</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+
+	<script type="text/javascript">
+
+	$(document).ready(function () {
+		$('#studentsTable').DataTable(); // Initialize DataTable on page load if needed
+	});
+	</script>
+
+
+	
